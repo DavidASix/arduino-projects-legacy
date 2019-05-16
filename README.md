@@ -14,4 +14,4 @@ This script reads the Temperature & Humidity sensor every 2500ms. The T&H are di
 ## Temp_Humidity_Sensor_to_RGB
 ### RGB LED / Temperature & Humidity
 
-This script Reads the DHT11 Humidity & Temperature sensor. The sensor data is printed in the serial monitor. Sensor data is interpolated via ledColor() to return a value of 0-255. Code was written after 30 hours of no sleep, try not to judge too harshly.
+This script reads the DHT11 Humidity & Temperature sensor. The sensor data is printed in the serial monitor. Sensor data is interpolated via ledColor() to return a value of 0-255. Code was written after 30 hours of no sleep, try not to judge too harshly.
