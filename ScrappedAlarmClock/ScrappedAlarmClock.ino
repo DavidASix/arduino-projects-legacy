@@ -94,7 +94,7 @@ void setup() {
   pinMode(anode11, OUTPUT);
 }
 
-void lightSegment(int digit, int seg, int delayValue=2) {
+void lightSegment(int digit, int seg, int delayValue=1) {
   // Matrix goes Digit, segment, [anode#, cathode2, cathode1] //
   int digiSegments[3][7][3] = {
     { //D2
@@ -153,14 +153,34 @@ void lightSegment(int digit, int seg, int delayValue=2) {
   digitalWrite(anodes[digiSegments[digit][seg][0] - 1], LOW);
 }
 
-void loop() {
-  lightSegment(0, 5);
-  lightSegment(0, 6);
-  lightSegment(0, 2);
+void lightNumber(int numChar, int digit=0) {
+  // numChar = Number to be displayed
+  // digit = digit position for numChar to showup
+  // First element of each array is the length minus 1
+  int numbers[10][8] {
+    {6, 0, 1, 2, 3, 4, 5 }, // 0
+    {2, 1, 2 }, // 1
+    {5, 0, 1, 6, 4, 3 }, // 2
+    {5, 0, 1, 6, 2, 3 }, // 3
+    {4, 1, 2, 6, 5 }, // 4
+    {5, 0, 5, 6, 2, 3 }, // 5
+    {6, 0, 5, 4, 3, 2, 6 }, // 6
+    {3, 0, 1, 2 }, // 7
+    {7, 0, 1, 2, 3, 4, 5, 6 }, //8
+    {5, 0, 1, 2, 6, 5 } // 9
+  };
 
-  lightSegment(2, 5);
-  lightSegment(2, 6);
-  lightSegment(2, 2);
+  // Light up each segement in the specified array //
+  for (int i=0; i < numbers[numChar][0]; i++) {
+    lightSegment(digit, numbers[numChar][i + 1]);
+  }
+}
+
+void loop() {
+  lightNumber(1, 0);
+  lightNumber(2, 1);
+  lightNumber(3, 2);
+
 
   /*
   // Second Digit - B, C, E, F, G //
