@@ -95,49 +95,25 @@ void setup() {
 }
 
 void lightSegment(int digit, int seg, int delayValue=1) {
-  // Matrix goes Digit, segment, [anode#, cathode2, cathode1] //
+  // Matrix goes Digit, segment, [anode#, cathode2 value,] //
   int digiSegments[3][7][3] = {
-    { //D2
-      {4, 0, 1 }, // Seg A
-      {2, 0, 1 }, // Seg B
-      {3, 0, 1 }, // Seg C
-      {3, 1, 0 }, // Seg D
-      {1, 1, 0 }, // Seg E
-      {4, 1, 0 }, // Seg F
-      {2, 1, 0 }, // Seg G
+    {  // D2, A-G
+      {4, 0 }, {2, 0 }, {3, 0 }, {3, 1 }, {1, 1 }, {4, 1 }, {2, 1 }
     },
-    { //D3
-      {5, 1, 0 }, // Seg A
-      {6, 1, 0 }, // Seg B
-      {7, 1, 0 }, // Seg C
-      {7, 0, 1 }, // Seg D
-      {8, 0, 1 }, // Seg E
-      {5, 0, 1 }, // Seg F
-      {6, 0, 1 }, // Seg G
+    { //D3, A-G
+      {5, 1 }, {6, 1 }, {7, 1 }, {7, 0 }, {8, 0 }, {5, 0 }, {6, 0 }
     },
-    { //D4
-      {11, 0, 1 }, // Seg A
-      {9, 0, 1 }, // Seg B
-      {10, 0, 1 }, // Seg C
-      {10, 1, 0 }, // Seg D
-      {8, 1, 0 }, // Seg E
-      {11, 1, 0 }, // Seg F
-      {9, 1, 0 }, // Seg G
+    { //D4 A-G
+      {11, 0 }, {9, 0 }, {10, 0 }, {10, 1 }, {8, 1 }, {11, 1 }, {9, 1 }
     }
   };
+
   int anodes[11] = {
-    anode1,
-    anode2,
-    anode3,
-    anode4,
-    anode5,
-    anode6,
-    anode7,
-    anode8,
-    anode9,
-    anode10,
+    anode1, anode2, anode3, anode4, anode5,
+    anode6, anode7, anode8, anode9, anode10,
     anode11,
   };
+
   // Set Cathode values
 
   if (digiSegments[digit][seg][1] == 1) {
