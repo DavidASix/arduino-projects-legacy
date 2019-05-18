@@ -94,7 +94,75 @@ void setup() {
   pinMode(anode11, OUTPUT);
 }
 
+void lightSegment(int digit, int seg, int delayValue=2) {
+  // Matrix goes Digit, segment, [anode#, cathode2, cathode1] //
+  int digiSegments[3][7][3] = {
+    { //D2
+      {4, 0, 1 }, // Seg A
+      {2, 0, 1 }, // Seg B
+      {3, 0, 1 }, // Seg C
+      {3, 1, 0 }, // Seg D
+      {1, 1, 0 }, // Seg E
+      {4, 1, 0 }, // Seg F
+      {2, 1, 0 }, // Seg G
+    },
+    { //D3
+      {5, 1, 0 }, // Seg A
+      {6, 1, 0 }, // Seg B
+      {7, 1, 0 }, // Seg C
+      {7, 0, 1 }, // Seg D
+      {8, 0, 1 }, // Seg E
+      {5, 0, 1 }, // Seg F
+      {6, 0, 1 }, // Seg G
+    },
+    { //D4
+      {11, 0, 1 }, // Seg A
+      {9, 0, 1 }, // Seg B
+      {10, 0, 1 }, // Seg C
+      {10, 1, 0 }, // Seg D
+      {8, 1, 0 }, // Seg E
+      {11, 1, 0 }, // Seg F
+      {9, 1, 0 }, // Seg G
+    }
+  };
+  int anodes[11] = {
+    anode1,
+    anode2,
+    anode3,
+    anode4,
+    anode5,
+    anode6,
+    anode7,
+    anode8,
+    anode9,
+    anode10,
+    anode11,
+  };
+  // Set Cathode values
+
+  if (digiSegments[digit][seg][1] == 1) {
+    digitalWrite(cathode2, HIGH);
+    digitalWrite(cathode1, LOW);
+  } else {
+    digitalWrite(cathode2, LOW);
+    digitalWrite(cathode1, HIGH);
+  }
+
+  digitalWrite(anodes[digiSegments[digit][seg][0] - 1], HIGH);
+  delay(delayValue);
+  digitalWrite(anodes[digiSegments[digit][seg][0] - 1], LOW);
+}
+
 void loop() {
+  lightSegment(0, 5);
+  lightSegment(0, 6);
+  lightSegment(0, 2);
+
+  lightSegment(2, 5);
+  lightSegment(2, 6);
+  lightSegment(2, 2);
+
+  /*
   // Second Digit - B, C, E, F, G //
   digitalWrite(cathode1, HIGH);
   digitalWrite(cathode2, LOW);
@@ -209,4 +277,5 @@ void loop() {
   digitalWrite(anode11, HIGH);
   delay(delayTime);
   digitalWrite(anode11, LOW);
+  */
 }
