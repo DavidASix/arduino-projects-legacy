@@ -152,12 +152,20 @@ void lightNumber(int numChar, int digit=0) {
   }
 }
 
+void countUp() {
+    int sec = millis() / 1000;
+
+    // Subtract amount of times clock has rolledover//
+    sec = sec - (floor((millis() / 1000) / (10 * 60)) * (10 * 60));
+
+    // Minutes Passed //
+    lightNumber(floor(sec / 60), 0);
+    // 10's of seconds pased //
+    lightNumber(floor((sec % 60) / 10), 1);
+    // 1's of seconds passed //
+    lightNumber(sec % 10, 2);
+}
+
 void loop() {
-  int sec = millis() / 1000;
-  // Minutes Passed //
-  lightNumber(floor(sec / 60), 0);
-  // 10's of seconds pased //
-  lightNumber(floor((sec % 60) / 10), 1);
-  // 1's of seconds passed //
-  lightNumber(sec % 10, 2);
+  countUp();
 }
