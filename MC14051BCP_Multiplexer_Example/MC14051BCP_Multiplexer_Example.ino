@@ -3,53 +3,30 @@
 
 
 /*
-  This script contains an example for the MC14051B Multiplexer.
-  // See PDF in containing folder for truth table and pin layout
+  This script contains an example for using my MC14051B Multiplexer library.
+
   DEPENDENCIES
+    Multiplexer14051
 */
-const int
-  powerPin = A5, //Pin for output power
-  dataPinA = 2,
-  dataPinB = 3,
-  dataPinC = 4,
-  inhibit = 7
-  ;
+
+#include <Multiplexer14051.h>
+
+// powerPin, inhibitor pin, dataPinA, dataPinB, dataPinC //
+Multiplexer multiplexer(A5, 7, 2, 3, 4);
 
 const int waitTime = 500;
 
-void setup() {
-  pinMode(dataPinA, OUTPUT);
-  pinMode(dataPinB, OUTPUT);
-  pinMode(dataPinC, OUTPUT);
-  pinMode(inhibit, OUTPUT);
-  analogWrite(powerPin, 255); //Value of outputing pin
-
-}
-
-void writePin(int pinNum) {
-  int pins[8][3] = {
-  //{ pinA, pinB, pinC }
-    { LOW, LOW, LOW }, // X0
-    { HIGH, LOW, LOW }, // X1
-    { LOW, HIGH, LOW }, // X2
-    { HIGH, HIGH, LOW }, // X3
-    { LOW, LOW, HIGH }, // X4
-    { HIGH, LOW, HIGH }, // X5
-    { LOW, HIGH, HIGH }, // X6
-    { HIGH, HIGH, HIGH } // X7
-  };
-
-  digitalWrite(dataPinA, pins[pinNum][0]);
-  digitalWrite(dataPinB, pins[pinNum][1]);
-  digitalWrite(dataPinC, pins[pinNum][2]);
-}
+void setup() {}
 
 void loop() {
-  writePin(0);
+  // writePin requires 1 argument from -1 - 7 (-1 = no pins, 0-7 = respective pins) //
+  multiplexer.writePin(0);
   delay(waitTime); // Pin X0
-  writePin(1);
+  multiplexer.writePin(1);
   delay(waitTime); // Pin X1
-  writePin(2);
+  multiplexer.writePin(2);
   delay(waitTime); // Pin X2
+  multiplexer.writePin(-1);
+  delay(waitTime); // Pins off
   //...ETC
 }
