@@ -94,7 +94,7 @@ void setup() {
   pinMode(anode11, OUTPUT);
 }
 
-void lightSegment(int digit, int seg, int delayValue=1) {
+void writeSegment(int digit, int seg, int delayValue=1) {
   // Matrix goes Digit, segment, [anode#, cathode2 value,] //
   int digiSegments[3][7][3] = {
     {  // D2, A-G
@@ -129,7 +129,7 @@ void lightSegment(int digit, int seg, int delayValue=1) {
   digitalWrite(anodes[digiSegments[digit][seg][0] - 1], LOW);
 }
 
-void lightNumber(int numChar, int digit=0) {
+void writeNumber(int numChar, int digit=0) {
   // numChar = Number to be displayed
   // digit = digit position for numChar to showup
   // First element of each array is the length minus 1
@@ -148,7 +148,7 @@ void lightNumber(int numChar, int digit=0) {
 
   // Light up each segement in the specified array //
   for (int i=0; i < numbers[numChar][0]; i++) {
-    lightSegment(digit, numbers[numChar][i + 1]);
+    writeSegment(digit, numbers[numChar][i + 1]);
   }
 }
 
@@ -159,11 +159,11 @@ void countUp() {
     sec = sec - (floor((millis() / 1000) / (10 * 60)) * (10 * 60));
 
     // Minutes Passed //
-    lightNumber(floor(sec / 60), 0);
+    writeNumber(floor(sec / 60), 0);
     // 10's of seconds pased //
-    lightNumber(floor((sec % 60) / 10), 1);
+    writeNumber(floor((sec % 60) / 10), 1);
     // 1's of seconds passed //
-    lightNumber(sec % 10, 2);
+    writeNumber(sec % 10, 2);
 }
 
 void loop() {
