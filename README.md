@@ -2,7 +2,7 @@
 
 ## Various Arduino projects in the works
 
-This repo is the home of my Arduino projects folder. I've got a multitude of spare scrap electronics laying around and I'm trying to put them to good use.
+This repo is an old home of my previous Arduino projects folder. I've got a multitude of spare scrap electronics laying around and I'm trying to put them to good use.
 I'll be overjoyed if any of my code helps someone with their projects.
 
 ## LCD_Temp-Humi-Sensor
